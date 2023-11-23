@@ -14,29 +14,36 @@ def read_file_content(uploaded_file):
     
 
 # title of the web app.
-st.title('Syntax Shift by OpenAI.🚀')
+st.title('Syntax Shift by OpenAI 🚀')
 
 # OpenAPI key
 api_key = st.text_input('Enter your OpenAI API.')
 
 client = OpenAI(api_key=api_key)
 
+
+
+
+####################################################
 # following code maps the options, when user select one option and it shows rest of other options.
-options_mapping = {
-    "C++": ["Java", "Python3","Javascript"],
-    "Java": ["C++", "Python3","Javascript"],
-    "Python3": ["C++", "Java","Javascript"],
-    "Javascript":["C++","Java","Python3"]
-}
+# options_mapping = {
+#     "C++": ["Java", "Python3","Javascript"],
+#     "Java": ["C++", "Python3","Javascript"],
+#     "Python3": ["C++", "Java","Javascript"],
+#     "Javascript":["C++","Java","Python3"]
+# }
 
-option_1 = list(options_mapping.keys())
+# option_1 = list(options_mapping.keys())
 
-lang1 = st.sidebar.selectbox("Original Language", option_1)
+# lang1 = st.sidebar.selectbox("Original Language", option_1)
 
-option_2 = options_mapping.get(lang1, [])
+# option_2 = options_mapping.get(lang1, [])
 
-lang2 = st.sidebar.selectbox("Convert to?", option_2)
+# lang2 = st.sidebar.selectbox("Convert to?", option_2)
+####################################################
 
+lang1 = st.sidebar.text_input('Original Language?')
+lang2 = st.sidebar.text_input('Convert to?')
 
 col1, col2 = st.columns(2)
 
@@ -45,7 +52,7 @@ with col1:
 
 with col2:
 
-    code_file = st.file_uploader("OR upload your file!!",type=['cpp','java','py'])
+    code_file = st.file_uploader("or Upload a file!!",)
 
     if code_file is not None:
 
@@ -60,7 +67,7 @@ if(st.button('Convert!!')):
             model="text-davinci-003",  
             prompt=prompt,
             temperature = 0.1,
-            max_tokens=512  
+            max_tokens=1024 
         )
 
         
@@ -78,4 +85,12 @@ if(st.button('Convert!!')):
     generated_code_response = generate_code(code_prompt)
 
     st.code(generated_code_response,language='lang2')
+
+
+
+footer = st.empty()
+
+# add the markdown content at the bottom
+footer.markdown("[![Title](https://img.icons8.com/material-outlined/48/000000/github.png)](https://github.com/anurag8590)")
+
 
