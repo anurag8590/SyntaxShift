@@ -12,5 +12,5 @@ pip install -r requirements.txt
 streamlit run main.py
 ```
 
-#### Note: You have to give you OpenAI API during execution. Find it here: openai.com -> profile -> API keys.
+#### Note: You have to give your OpenAI API during execution. Find it here: openai.com -> profile -> API keys.
 
